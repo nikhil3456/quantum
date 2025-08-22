@@ -33,7 +33,7 @@ public class ConsumerWorker implements Runnable {
                             broker.commit(topicName, groupId, message.id());
                         } else {
                             System.err.printf("ERROR: Consumer %s failed to process message %s. Error: %s. Message will be redelivered.%n",
-                                    consumerLogic.getConsumerGroupId(), message.id(), exception.getMessage());
+                                    consumerLogic.getConsumerId(), message.id(), exception.getMessage());
                         }
                     }, consumerExecutor);
                 } else {

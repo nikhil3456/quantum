@@ -1,5 +1,6 @@
 package io.github.nikhil3456;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -45,6 +46,7 @@ public class BrokerImpl implements Broker {
 
         String consumerKey = topicName + "-" + groupId;
         ConsumerWorker worker = new ConsumerWorker(topicName, groupId, consumer, this, consumerExecutor);
+        consumerWorkers.putIfAbsent(consumerKey, new ArrayList<>());
         consumerWorkers.get(consumerKey).add(worker);
 
         new Thread(worker).start();
